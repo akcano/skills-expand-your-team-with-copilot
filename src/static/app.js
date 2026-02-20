@@ -7,22 +7,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentTheme = localStorage.getItem("theme") || "light";
   if (currentTheme === "dark") {
     document.body.classList.add("dark-mode");
-    themeIcon.textContent = "☀️";
+    if (themeIcon) themeIcon.textContent = "☀️";
   }
 
   // Toggle theme
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    
-    // Update icon and save preference
-    if (document.body.classList.contains("dark-mode")) {
-      themeIcon.textContent = "☀️";
-      localStorage.setItem("theme", "dark");
-    } else {
-      themeIcon.textContent = "🌙";
-      localStorage.setItem("theme", "light");
-    }
-  });
+  if (themeToggle && themeIcon) {
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      
+      // Update icon and save preference
+      if (document.body.classList.contains("dark-mode")) {
+        themeIcon.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      } else {
+        themeIcon.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+      }
+    });
+  }
 
   // DOM elements
   const activitiesList = document.getElementById("activities-list");
